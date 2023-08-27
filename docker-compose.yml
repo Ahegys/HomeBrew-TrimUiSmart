@@ -1,0 +1,9 @@
+version: '3'
+services:
+  desenvolvimento-arm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./SOURCE_CODE:/app/SOURCE_CODE
+    tty: true

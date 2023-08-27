@@ -14,6 +14,7 @@ CheckArguments
 
 int
 main(int ac, char **av) {
+  (void)av;
   if (ac < 2) {
   	cout << "No input sent, Check docs -h or --help" << endl;
   	return -1;

@@ -8,8 +8,8 @@ VPATH := $(SRCS) $(addprefix $(SRCS)/, $(VPATH))
 HEADER = ./inc
 HEADER := $(addprefix -I, $(HEADER))
 BUILDS = ./builds
-CC = arm-none-eabi-g++
-CFLAGS = -Wall -Werror -Wextra -g -mtune=cortex-a7 -liostream
+CC = arm-linux-gnueabihf-g++-10
+CFLAGS = -Wall -Werror -Wextra -g
 DEPFLAGS = -MMD -MF
 DEL = rm -rf
 MKDIR = mkdir -p
@@ -37,7 +37,7 @@ re: fclean all
 
 run: all
 	clear
-	@./$(NAME)
+	@qemu-arm -L /usr/arm-linux-gnueabihf/ ./$(NAME) $(ARGS)
 
 $(BUILDS):
 	$(MKD_MSG)
