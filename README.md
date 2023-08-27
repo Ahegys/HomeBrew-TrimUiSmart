@@ -3,6 +3,7 @@
 <p>i'm trying to develop a homebrew for trimui smart for fun, not a serious project</p>
 
 <h2>Requirements</h2>
+
 ```
     docker
     docker desktop
@@ -10,7 +11,6 @@
 
 # how to run
 
-run
 ```
 docker compose up
 # wait to build image
