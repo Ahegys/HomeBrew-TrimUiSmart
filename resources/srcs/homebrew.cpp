@@ -25,23 +25,23 @@ void  CheckArguments::CheckRepos(char **commands, int command) {
 }
 
 int CheckArguments::CheckCommandSent() {
-   if (commands && commands[1] && std::strcmp(commands[1], "install") == 0){
+   if (commands && commands[1] && strcmp(commands[1], "install") == 0){
      CheckRepos(commands, INSTALL_COMMAND);
      return INSTALL_COMMAND;
    }
-   else if (commands && commands[1] && std::strcmp(commands[1], "remove") == 0){
+   else if (commands && commands[1] && strcmp(commands[1], "remove") == 0){
      CheckRepos(commands, REMOVE_COMMAND);
      return REMOVE_COMMAND;
    }
-   else if (commands && commands[1] && std::strcmp(commands[1], "search") == 0){
+   else if (commands && commands[1] && strcmp(commands[1], "search") == 0){
      CheckRepos(commands, SEARCH_COMMAND);
      return SEARCH_COMMAND;
    }
-   else if (commands && commands[1] && std::strcmp(commands[1], "--help") == 0){
+   else if (commands && commands[1] && strcmp(commands[1], "--help") == 0){
      PrintHelp();
      return HELP_COMMAND;
    }
-   else if (commands && commands[1] && std::strcmp(commands[1], "-h") == 0){
+   else if (commands && commands[1] && strcmp(commands[1], "-h") == 0){
      PrintHelp();
      return HELP_COMMAND;
    }

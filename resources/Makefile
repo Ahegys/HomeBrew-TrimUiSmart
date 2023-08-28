@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME): $(BUILDS) $(OBJS)
 	$(BIN_MSG)
-	@$(CC) $(CFLAGS) $(OBJS) $(HEADER) -o $@ -I/usr/include/SDL2 -L/usr/lib/arm-linux-gnueabihf -l./SDL_SO/
+	@$(CC) $(CFLAGS) $(OBJS) $(HEADER) -o $@
 
 clean:
 	$(DEL_MSG)

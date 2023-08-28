@@ -1,6 +1,7 @@
 #pragma once
 
 # include <iostream>
+# include <cstring>
 # define ERROR_COMMAND 3
 # define INSTALL_COMMAND 1
 # define REMOVE_COMMAND 2

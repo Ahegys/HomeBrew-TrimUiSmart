@@ -15,7 +15,7 @@
 docker compose up
 # wait to build image
 # exec
-docker-compose exec desenvolvimento-arm bash
+docker-compose exec trimui-workspace zsh
 # to enter in setup
 cd SOURCE_CODE
 make
