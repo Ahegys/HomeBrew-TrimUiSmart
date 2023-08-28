@@ -1,19 +1,20 @@
-NAME = trim
+NAME = trim-x86
 
-SRCS = ./srcs
-BUILDS = ./builds
-HEADER = ./includes
+RESOURCES = ./resources
+SRCS = $(RESOURCES)/srcs
+BUILDS = $(RESOURCES)/builds
+HEADER = $(RESOURCES)/includes
 HEADER := $(addprefix -I, $(HEADER))
 
 FILES = $(wildcard $(SRCS)/*.cpp)
 OBJS = $(patsubst $(SRCS)/%.cpp,$(BUILDS)/%.o,$(FILES))
 DEP = $(OBJS:.o=.d)
 
-CC = arm-linux-gnueabihf-g++-10
+CC = clang
 DEL = rm -rf
 MKDIR = mkdir -p
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 DEPFLAGS = -MMD -MF
 
 DEL_MSG = @printf "[-][\e[0;31m DEL \e[0m] "
@@ -21,25 +22,31 @@ BIN_MSG = @printf "[*][\e[0;32m BIN \e[0m] $(NAME)\n"
 BLD_MSG = @printf "[+][\e[0;34m BLD \e[0m] "
 MKD_MSG = @printf "[+][\e[0;35m MKD \e[0m] "
 
-all: $(NAME)
+all: $(NAME) trimui
 
 $(NAME): $(BUILDS) $(OBJS)
 	$(BIN_MSG)
 	@$(CC) $(CFLAGS) $(OBJS) $(HEADER) -o $@
 
+trimui:
+	$(BIN_MSG)
+	@make -C $(RESOURCES)
+
 clean:
 	$(DEL_MSG)
 	$(DEL) $(BUILDS)
+	@make -C clean
 
 fclean: clean
 	$(DEL_MSG)
 	$(DEL) ./$(NAME)
+	@make -C fclean
 
 re: fclean all
 
-run: all
+run: $(NAME)
 	clear
-	@qemu-arm -L /usr/arm-linux-gnueabihf/ ./$(NAME) $(ARGS)
+	@./$(NAME) $(ARGS)
 
 $(BUILDS):
 	$(MKD_MSG)
@@ -50,6 +57,7 @@ $(BUILDS)/%.o: $(SRCS)/%.cpp | $(BUILDS)
 	@printf "Building ... %s\n" $@
 	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@ $(DEPFLAGS) $(@:.o=.d)
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run trimui
 
 -include $(DEP)
+
