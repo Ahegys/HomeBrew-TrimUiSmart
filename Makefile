@@ -10,7 +10,7 @@ FILES = $(wildcard $(SRCS)/*.cpp)
 OBJS = $(patsubst $(SRCS)/%.cpp,$(BUILDS)/%.o,$(FILES))
 DEP = $(OBJS:.o=.d)
 
-CC = clang
+CC = g++
 DEL = rm -rf
 MKDIR = mkdir -p
 
@@ -30,23 +30,22 @@ $(NAME): $(BUILDS) $(OBJS)
 
 trimui:
 	$(BIN_MSG)
-	@make -C $(RESOURCES)
+	@make -s -C $(RESOURCES)
 
 clean:
 	$(DEL_MSG)
 	$(DEL) $(BUILDS)
-	@make -C clean
+	@make clean -s -C $(RESOURCES)
 
 fclean: clean
 	$(DEL_MSG)
 	$(DEL) ./$(NAME)
-	@make -C fclean
+	@make fclean -s -C $(RESOURCES)
 
 re: fclean all
 
 run: $(NAME)
 	clear
-	@./$(NAME) $(ARGS)
 
 $(BUILDS):
 	$(MKD_MSG)
