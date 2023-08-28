@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copie o código-fonte para o contêiner
-COPY SOURCE_CODE /app/SOURCE_CODE
+COPY resources /app/resources
 
 # Baixe e compile o SDL2
 RUN wget https://www.libsdl.org/release/SDL2-2.0.14.tar.gz && \

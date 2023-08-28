@@ -1,9 +1,9 @@
 version: '3'
 services:
-  desenvolvimento-arm:
+  trimui-workspace:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./SOURCE_CODE:/app/SOURCE_CODE
+      - ./resources:/app/resources
     tty: true
