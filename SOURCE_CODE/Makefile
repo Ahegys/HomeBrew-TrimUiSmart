@@ -15,7 +15,7 @@ DEL = rm -rf
 MKDIR = mkdir -p
 
 DEL_MSG = @printf "[-][\e[0;31m DEL \e[0m] "
-BIN_MSG = @printf "[*][\e[0;32m BIN \e[0m] $(NAME)"
+BIN_MSG = @printf "[*][\e[0;32m BIN \e[0m] $(NAME)\n"
 BLD_MSG = @printf "[+][\e[0;34m BLD \e[0m] "
 MKD_MSG = @printf "[+][\e[0;35m MKD \e[0m] "
 
@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME): $(BUILDS) $(OBJS)
 	$(BIN_MSG)
-	@$(CC) $(CFLAGS) $(OBJS) $(HEADER) -o $@
+	@$(CC) $(CFLAGS) $(OBJS) $(HEADER) -o $@ -I/usr/include/SDL2 -L/usr/lib/arm-linux-gnueabihf -l./SDL_SO/
 
 clean:
 	$(DEL_MSG)
