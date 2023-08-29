@@ -18,14 +18,6 @@ WORKDIR /app
 # Copie o código-fonte para o contêiner
 COPY resources /app/resources
 
-# Baixe e compile o SDL2
-RUN wget https://www.libsdl.org/release/SDL2-2.0.14.tar.gz && \
-    tar -xzvf SDL2-2.0.14.tar.gz && \
-    cd SDL2-2.0.14 && \
-    ./configure --host=arm-linux-gnueabihf --prefix=/usr && \
-    make && \
-    make install
-
 # Defina o comando padrão que será executado quando o contêiner for iniciado
 CMD ["zsh"]
 
