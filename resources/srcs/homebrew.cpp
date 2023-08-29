@@ -1,4 +1,5 @@
 #include "../includes/homebrew.hpp"
+#include "../includes/Download.hpp"
 
 using namespace std;
 
@@ -10,7 +11,9 @@ CheckArguments::~CheckArguments() {}
 
 void  CheckArguments::CheckRepos(char **commands, int command) {
   if (command == INSTALL_COMMAND) {
-      cout << "Installing " << commands << "..." << endl;
+      TrimInstaller install;
+      install.DownloadList = (const char **)commands;
+      install.DownloadResources();
       return ;
   }
   else if (command == REMOVE_COMMAND) {

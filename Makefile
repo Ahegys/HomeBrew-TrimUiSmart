@@ -26,7 +26,7 @@ all: $(NAME) trimui
 
 $(NAME): $(BUILDS) $(OBJS)
 	$(BIN_MSG)
-	@$(CC) $(CFLAGS) $(OBJS) $(HEADER) -o $@
+	@$(CC) $(CFLAGS) $(OBJS) $(HEADER) -o $@ -lcurl
 
 trimui:
 	$(BIN_MSG)
